@@ -9,4 +9,13 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-  # In the future, you'll add a service for 'server' here
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      
