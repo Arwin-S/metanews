@@ -12,13 +12,15 @@ from models.postgre import db, DummyTable, ArticlesTable
 app = Flask(__name__)
 
 # Configure the PostgreSQL connection
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://root:root@localhost:6543/test_db"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://root:root@localhost:6543/test_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://root:root@db:5432/test_db"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 @app.get("/")
 def index():
-    return "<p>Index Page</p>"
+    return "<p>Index__Page</p>"
 
 
 @app.get("/hello")
