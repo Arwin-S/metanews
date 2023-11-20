@@ -24,7 +24,7 @@ services:
       - "5050:80"
 
   flask_app:
-    container_name: flask_app_container
+    container_name: flask_app
     build: ./info_retrieval
     ports:
       - "5000:5000"
@@ -32,3 +32,24 @@ services:
       - ./info_retrieval:/usr/src/app
     depends_on:
       - db
+
+  client:
+    build: ./web_app/client
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web_app/client:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  server:
+    build: ./web_app/server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web_app/server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      
