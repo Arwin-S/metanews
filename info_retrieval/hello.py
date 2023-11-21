@@ -20,7 +20,7 @@ db.init_app(app)
 
 @app.get("/")
 def index():
-    return "<p>Index__Page</p>"
+    return "<p>Index_Page</p>"
 
 
 @app.get("/hello")
