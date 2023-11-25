@@ -5,15 +5,20 @@ from flask import Flask
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
-
+from dotenv import load_dotenv
+load_dotenv()
+import os
 from models.postgre import db, DummyTable, ArticlesTable
-
 
 app = Flask(__name__)
 # Configure the PostgreSQL connection
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://root:root@localhost:6543/test_db"
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://root:root@db:5432/test_db"
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://metanews_sql:metanews123@metanews-sql.cqttzitaoy77.us-east-1.rds.amazonaws.com:5432/metanews_db"
+postgre_user = os.environ.get('USER')
+postgre_password = os.environ.get('PASSWORD')
+postgre_host = os.environ.get('HOST')
+postgre_port = os.environ.get('PORT')
+postgre_db = os.environ.get('DB')
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{postgre_user}:{postgre_password}@{postgre_host}:{postgre_port}/{postgre_db}"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://metanews_sql:metanews123@metanews-sql.cqttzitaoy77.us-east-1.rds.amazonaws.com:5432/metanews_db"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
