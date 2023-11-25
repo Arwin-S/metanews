@@ -4,7 +4,7 @@ from pynytimes import NYTAPI
 db = SQLAlchemy()
 
 # nytimes api
-api_key = ""
+api_key = "puyXneg6oRhJMLH6bNa4EINV0TaYoYk2"
 nyt = NYTAPI(api_key, parse_dates=True)
 
 
